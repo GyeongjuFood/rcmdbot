@@ -483,10 +483,10 @@ on-finished@~2.3.0:
   dependencies:
     ee-first "1.1.1"
 
-openbuilder-node@^0.1.0:
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/openbuilder-node/-/openbuilder-node-0.1.0.tgz#91192edf140c28f8171d386c6a2e138c5499f86f"
-  integrity sha512-RoPAFNC8U8/ARWYMg4CzrjjFXo3t3kOxxhIrGlgRHsIXtDliIsmWdKzKF8Bcs+3Rgau4b92Fak2jM4aNrSDV7g==
+openbuilder-node@^0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/openbuilder-node/-/openbuilder-node-0.1.3.tgz#b5427a251ca8c9b6b89d1a5e347270218c7784e0"
+  integrity sha512-+2EI46hXeCweSrdi14nJMY2CXRWKDkxzYfTjWkcfVBfMxnOI4/2qyC1AeL1HyAZXA61mK5TgG/PXZ2BQuVjTrA==
 
 parseurl@~1.3.3:
   version "1.3.3"

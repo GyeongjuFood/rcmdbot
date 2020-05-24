@@ -24,34 +24,40 @@ const newVenue = wrapper(
 const random = wrapper(
   'random', 
   async(_req:Express.Request, res:Express.Response) => {
-    const ans = await service.readItem({region: '', foodtype: '', isRandom: true});
-    const cells = ans.map(item => {
-      const buttons = [{
-        "action": "webLink",
-        "label": "자세히 보기",
-        "webLinkUrl": item.link
-      }];
-      return openbuilder.basicCard(item.name, item.desc, item.imgUrl, buttons).basicCard;
+    const search = await service.readItem({region: '', foodtype: '', isRandom: true});
+    const skillRes = new openbuilder.SkillResponse();
+    const output = new openbuilder.Output.Carousel('basicCard');
+
+    search.forEach(item => {
+      const card = new openbuilder.Card.BasicCard(item.name, item.desc, item.imgUrl);
+      const linkbtn = openbuilder.Cmpnts.Button('webLink', {label: "자세히 보기", "link": item.link});
+      card.addBtn(linkbtn);
+      output.addItem(card);
     });
-    const carousel = openbuilder.basicCardCarousel(cells);
-    return res.status(200).json(carousel);
+
+    skillRes.template.addOutput(output);
+    const ans = skillRes.json();
+    return res.status(200).json(ans);
   }
 );
 
 const rate = wrapper(
   'random', 
   async(_req:Express.Request, res:Express.Response) => {
-    const ans = await service.readItem({region: '', foodtype: '', isRandom: false});
-    const cells = ans.map(item => {
-      const buttons = [{
-        "action": "webLink",
-        "label": "자세히 보기",
-        "webLinkUrl": item.link
-      }];
-      return openbuilder.basicCard(item.name, item.desc, item.imgUrl, buttons).basicCard;
+    const search = await service.readItem({region: '', foodtype: '', isRandom: false});
+    const skillRes = new openbuilder.SkillResponse();
+    const output = new openbuilder.Output.Carousel('basicCard');
+
+    search.forEach(item => {
+      const card = new openbuilder.Card.BasicCard(item.name, item.desc, item.imgUrl);
+      const linkbtn = openbuilder.Cmpnts.Button('webLink', {label: "자세히 보기", "link": item.link});
+      card.addBtn(linkbtn);
+      output.addItem(card);
     });
-    const carousel = openbuilder.basicCardCarousel(cells);
-    return res.status(200).json(carousel);
+    
+    skillRes.template.addOutput(output);
+    const ans = skillRes.json();
+    return res.status(200).json(ans);
   }
 );
 
@@ -59,18 +65,20 @@ const foodtype = wrapper(
   'random', 
   async(req:Express.Request, res:Express.Response) => {
     const foodtype = req.body.action.params['foodtype'];
-    const ans = await service.readItem({region: '', foodtype: foodtype, isRandom: false});
-    console.log(foodtype, ans);
-    const cells = ans.map(item => {
-      const buttons = [{
-        "action": "webLink",
-        "label": "자세히 보기",
-        "webLinkUrl": item.link
-      }];
-      return openbuilder.basicCard(item.name, item.desc, item.imgUrl, buttons).basicCard;
+    const search = await service.readItem({region: '', foodtype: foodtype, isRandom: false});
+    const skillRes = new openbuilder.SkillResponse();
+    const output = new openbuilder.Output.Carousel('basicCard');
+
+    search.forEach(item => {
+      const card = new openbuilder.Card.BasicCard(item.name, item.desc, item.imgUrl);
+      const linkbtn = openbuilder.Cmpnts.Button('webLink', {label: "자세히 보기", "link": item.link});
+      card.addBtn(linkbtn);
+      output.addItem(card);
     });
-    const carousel = openbuilder.basicCardCarousel(cells);
-    return res.status(200).json(carousel);
+    
+    skillRes.template.addOutput(output);
+    const ans = skillRes.json();
+    return res.status(200).json(ans);
   }
 );
 
@@ -78,18 +86,20 @@ const region = wrapper(
   'random', 
   async(req:Express.Request, res:Express.Response) => {
     const region = req.body.action.params['region'];
-    const ans = await service.readItem({region: region, foodtype: '', isRandom: false});
-    console.log(region, ans);
-    const cells = ans.map(item => {
-      const buttons = [{
-        "action": "webLink",
-        "label": "자세히 보기",
-        "webLinkUrl": item.link
-      }];
-      return openbuilder.basicCard(item.name, item.desc, item.imgUrl, buttons).basicCard;
+    const search = await service.readItem({region: region, foodtype: '', isRandom: false});
+    const skillRes = new openbuilder.SkillResponse();
+    const output = new openbuilder.Output.Carousel('basicCard');
+
+    search.forEach(item => {
+      const card = new openbuilder.Card.BasicCard(item.name, item.desc, item.imgUrl);
+      const linkbtn = openbuilder.Cmpnts.Button('webLink', {label: "자세히 보기", "link": item.link});
+      card.addBtn(linkbtn);
+      output.addItem(card);
     });
-    const carousel = openbuilder.basicCardCarousel(cells);
-    return res.status(200).json(carousel);
+    
+    skillRes.template.addOutput(output);
+    const ans = skillRes.json();
+    return res.status(200).json(ans);
   }
 );
 

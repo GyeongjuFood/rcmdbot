@@ -8,7 +8,9 @@ export interface venueParams {
   desc: string,
   imgUrl: string,
   link: string,
-  map: string
+  map: string,
+  menu: string[],
+  keywords: string[]
 }
 
 export interface venue extends mongoose.Document, venueParams {};
@@ -22,6 +24,8 @@ const schema = new mongoose.Schema({
   imgUrl: { type: String },
   link: { type: String },
   map: { type: String },
+  menu: [{ type: String }],
+  keywords: [{ type: String }]
 });
 
 export const VenueModel = mongoose.model<venue>('venus', schema);

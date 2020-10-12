@@ -14,7 +14,9 @@ const newVenue = wrapper(
       desc: req.body.desc as string,
       imgUrl: req.body.imgUrl as string,
       link: req.body.link as string,
-      map: req.body.map as string
+      map: req.body.map as string,
+      menu: [],
+      keywords: []
     };
     console.log(params);
     const ans = await service.createItem(params);

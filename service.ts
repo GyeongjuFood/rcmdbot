@@ -1,3 +1,4 @@
+import { KeywordModel, keyword } from './model/keyword';
 import {VenueModel, venueParams} from './model/venue';
 
 const createItem = async (item: venueParams) => {
@@ -25,6 +26,26 @@ const readItem = async (search: searchParam) => {
   return ans;
 };
 
+const keywordItem = async (keyword: string) => {
+  const ans = await VenueModel.find({keywords: keyword }).limit(10);
+  return ans;
+}
+
+const getItem = async (name: string) => {
+  const val = await VenueModel.findOne({name: name});
+  return val;
+};
+
+const keywordList = async() => {
+  const val = await KeywordModel.aggregate().sample(10) as keyword[];
+  return val;
+}
+
+const addKeyword = async (str: string) => {
+  await KeywordModel.create({keyword: str});
+  return {success: true};
+}
+
 const updateItem = () => {};
 
 const deleteItem = () => {};
@@ -32,6 +53,10 @@ const deleteItem = () => {};
 export default {
   createItem,
   readItem,
+  getItem,
+  keywordItem,
+  keywordList,
+  addKeyword,
   updateItem,
   deleteItem
 };

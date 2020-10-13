@@ -9,7 +9,6 @@ export interface venueParams {
   imgUrl: string,
   link: string,
   map: string,
-  menu: string[],
   keywords: string[]
 }
 
@@ -24,7 +23,6 @@ const schema = new mongoose.Schema({
   imgUrl: { type: String },
   link: { type: String },
   map: { type: String },
-  menu: [{ type: String }],
   keywords: [{ type: String }]
 });
 

@@ -36,18 +36,32 @@ const newKeyword = wrapper(
   }
 )
 
+const newMenu = wrapper(
+  'newMenu',
+   async(req, res) => {
+     const ans = await service.addMenu({
+       restaurant: req.body.rest,
+       imgurl: req.body.img,
+       title: req.body.title,
+       desc: req.body.desc
+     })
+   }
+)
+
 const menu = wrapper(
   'random',
   async(req: Express.Request, res: Express.Response) => {
     const name = String(req.body.action.clientExtra.name) as string;
-    const item = await service.getItem(name);
-    if(item === null) {
-      return res.status(200).json({});
-    }
-    const card = new openbuilder.Card.BasicCard(item.name, item.menu.join('\n'), item.imgUrl);
+    const items = await service.getMenus(name);
+    
+    const output = new openbuilder.Output.Carousel('basicCard');
+    items.forEach(it => {
+      const card = new openbuilder.Card.BasicCard(it.title, it.desc, it.imgurl);
+      output.addItem(card);
+    });
     
     const skillRes = new openbuilder.SkillResponse();
-    skillRes.template.addOutput(card);
+    skillRes.template.addOutput(output);
 
     return res.status(200).json(skillRes.json());
   }
@@ -165,6 +179,7 @@ const region = wrapper(
 export default {
   newVenue,
   newKeyword,
+  newMenu,
   menu,
   detail,
   keyword,

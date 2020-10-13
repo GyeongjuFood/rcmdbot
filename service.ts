@@ -1,4 +1,5 @@
 import { KeywordModel, keyword } from './model/keyword';
+import { MenuModel } from './model/menu';
 import {VenueModel, venueParams} from './model/venue';
 
 const createItem = async (item: venueParams) => {
@@ -36,6 +37,24 @@ const getItem = async (name: string) => {
   return val;
 };
 
+const getMenus = async (name: string) => {
+  const vals = await MenuModel.find({restaurant: name});
+  return vals;
+}
+
+interface menuParams {
+  restaurant: string;
+  imgurl: string;
+  title: string;
+  desc: string;
+}
+
+const addMenu = async (params: menuParams) => {
+  await MenuModel.create(params);
+
+  return {success: true};
+}
+
 const keywordList = async() => {
   const val = await KeywordModel.aggregate().sample(10) as keyword[];
   return val;
@@ -54,6 +73,8 @@ export default {
   createItem,
   readItem,
   getItem,
+  getMenus,
+  addMenu,
   keywordItem,
   keywordList,
   addKeyword,

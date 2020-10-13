@@ -14,6 +14,7 @@ Router.post('/keyword', controller.keyword);
 
 Router.post('/newVenue', controller.newVenue);
 Router.post('/newKeyword', controller.newKeyword);
+Router.post('/newMenu', controller.newMenu);
 
 Router.post('/menu', controller.menu);
 Router.post('/detail', controller.detail);

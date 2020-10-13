@@ -56,6 +56,10 @@ const menu = wrapper(
     const items = await service.getMenus(name);
     
     const output = new openbuilder.Output.Carousel('basicCard');
+    if(items.length === 0) {
+      const card = new openbuilder.Card.BasicCard('', '등록된 메뉴가 없습니다', '');
+      output.addItem(card);
+    }
     items.forEach(it => {
       const card = new openbuilder.Card.BasicCard(it.title, it.desc, it.imgurl);
       output.addItem(card);

@@ -96,8 +96,7 @@ const keyword = wrapper(
     const keyword = String(req.body.action.clientExtra.keyword) as string;
     const skillRes = new openbuilder.SkillResponse();
 
-    console.log(keyword);
-    if(keyword !== '') {
+    if(keyword !== undefined) {
       const search = await service.keywordItem(keyword);
       const output = carousel(search);
     

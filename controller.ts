@@ -44,7 +44,8 @@ const newMenu = wrapper(
        imgurl: req.body.img,
        title: req.body.title,
        desc: req.body.desc
-     })
+     });
+     return res.status(200).json(ans);
    }
 )
 

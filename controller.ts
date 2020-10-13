@@ -45,11 +45,11 @@ const menu = wrapper(
       return res.status(200).json({});
     }
     const card = new openbuilder.Card.BasicCard(item.name, item.menu.join('\n'), item.imgUrl);
-    const output = new openbuilder.Output.Bare(card);
-    const ans = output.json();
+    
+    const skillRes = new openbuilder.SkillResponse();
+    skillRes.template.addOutput(card);
 
-    console.log(JSON.stringify(ans));
-    return res.status(200).json(ans);
+    return res.status(200).json(skillRes.json());
   }
 );
 
@@ -67,11 +67,11 @@ const detail = wrapper(
     const mapbtn = openbuilder.Cmpnts.Button('block', {label: "메뉴 보기", blockId: menublock, extra: {name: item.name}});
     card.addBtn(linkbtn);
     card.addBtn(mapbtn);
-    const output = new openbuilder.Output.Bare(card);
-    const ans = output.json();
+    
+    const skillRes = new openbuilder.SkillResponse();
+    skillRes.template.addOutput(card);
 
-    console.log(JSON.stringify(ans));
-    return res.status(200).json(ans);
+    return res.status(200).json(skillRes.json());
 
   }
 )
@@ -103,7 +103,7 @@ const keyword = wrapper(
       skillRes.template.addOutput(output);
     }
     else {
-      const card = new openbuilder.Card.BasicCard("키워드를 입력해주세요", "", "");
+      const card = new openbuilder.Card.BasicCard("", "키워드를 입력해주세요", "");
       skillRes.template.addOutput(card);
     }
     const words = await service.keywordList();

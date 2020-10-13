@@ -47,6 +47,8 @@ const menu = wrapper(
     const card = new openbuilder.Card.BasicCard(item.name, item.menu.join('\n'), item.imgUrl);
     const output = new openbuilder.Output.Bare(card);
     const ans = output.json();
+
+    console.log(ans);
     return res.status(200).json(ans);
   }
 );
@@ -67,6 +69,8 @@ const detail = wrapper(
     card.addBtn(mapbtn);
     const output = new openbuilder.Output.Bare(card);
     const ans = output.json();
+
+    console.log(ans);
     return res.status(200).json(ans);
 
   }
@@ -103,6 +107,8 @@ const keyword = wrapper(
       const reply = openbuilder.QuickReply(it.keyword, 'block', it.keyword, keywordblock, {keyword: it.keyword});
       skillRes.template.addQuickReply(reply);
     });
+
+    console.log(skillRes.json());
 
     return res.status(200).json(skillRes.json());
   }

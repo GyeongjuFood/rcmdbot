@@ -102,6 +102,10 @@ const keyword = wrapper(
     
       skillRes.template.addOutput(output);
     }
+    else {
+      const card = new openbuilder.Card.BasicCard("키워드를 입력해주세요", "", "");
+      skillRes.template.addOutput(card);
+    }
     const words = await service.keywordList();
     words.forEach(it => {
       const reply = openbuilder.QuickReply(it.keyword, 'block', it.keyword, keywordblock, {keyword: it.keyword});
